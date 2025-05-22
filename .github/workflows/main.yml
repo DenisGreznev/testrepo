@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    pull_request:
+  pull_request:
 
 jobs:
   flake8-check:
@@ -29,24 +29,24 @@ jobs:
           flake8 .
 
 # Собрать и отправить образ приложения на DockerHub
-build:
-  runs-on: ubuntu-latest
-  needs: flake8-check
-  steps:
-    - name: Check out the repo
-      uses: actions/checkout@v2
+  build:
+    runs-on: ubuntu-latest
+    needs: flake8-check
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-    - name: Login to Docker
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Push to Docker Hub
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: <ваш_логин_на_Docker_Hub>/<ваш_образ>:latest
+      - name: Login to Docker
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+  
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: <ваш_логин_на_Docker_Hub>/<ваш_образ>:latest
