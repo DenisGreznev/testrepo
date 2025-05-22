@@ -43,4 +43,4 @@ password: ${{ secrets.DOCKER_PASSWORD }}
 uses: docker/build-push-action@v2
 with:
 push: true
-tags: <ваш_логин_на_docker_hub>/testrepo:latest
+tags: denixqq/testrepo:latest
