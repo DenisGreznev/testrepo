@@ -24,7 +24,7 @@ jobs:
           pip install -r 1\ задание/requirements.txt
 
       - name: Run unit tests
-        working-directory: 1\ задание
+        working-directory: "1 задание"
         run: pytest unit_test.py
 
   build-and-push:
